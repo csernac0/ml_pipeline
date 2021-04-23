@@ -3,10 +3,10 @@
 ml_pipeline is a tool that allows data scientists to easily run ML pipelines on kaggle competition datasets. 
 The pipeline includes: 
 
-* extraction
-* data_processing 
-* model_training 
-* model eval)
+* Extraction (from kaggle competition)
+* Data Processing (Treatment for nan, OneHotEncoding, split dataset)
+* Model Training 
+* Model Eval
 
 ## Prerequisites 
 1. python 3.8
