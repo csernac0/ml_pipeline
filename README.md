@@ -1,6 +1,7 @@
 # 🧑‍🔬 ML Pipeline
 
-ml_pipeline is a tool that allows data scientists to easily run ML pipelines on kaggle competition datasets.
+ml_pipeline is a tool that allows data scientists to easily run ML pipelines on kaggle competition datasets. 
+For default it will run on https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview competiton.
 
 
 ## Prerequisites 
