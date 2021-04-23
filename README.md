@@ -1,4 +1,4 @@
-# 🧑‍🔬 ML Pipeline
+# 🧑‍🔬 ML Training Pipeline
 
 ml_pipeline is a tool that allows data scientists to easily run ML training pipelines on kaggle competition datasets. 
 The pipeline includes: 
