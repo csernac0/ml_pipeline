@@ -39,32 +39,32 @@ The pipeline includes:
     }  
     ```
     
-For example, for another kaggle dataset https://www.kaggle.com/anmolkumar/house-price-prediction-challenge?select=train.csv: 
+    For example, for another kaggle dataset https://www.kaggle.com/anmolkumar/house-price-prediction-challenge?select=train.csv: 
 
-    ```bash
-    {
-        "type_kaggle_object" : "dataset",
-        "competition_name" : "anmolkumar/house-price-prediction-challenge",
-        "file_download": "train.csv",
-        "features" : [
-            "POSTED_BY", 
-            "UNDER_CONSTRUCTION", 
-            "RERA", 
-            "BHK_NO.", 
-            "BHK_OR_RK",
-            "SQUARE_FT", 
-            "READY_TO_MOVE", 
-            "RESALE", 
-            "ADDRESS", 
-            "LONGITUDE",
-            "LATITUDE"
-        ],
-        "obj_var" : "TARGET(PRICE_IN_LACS)",
-        "id_dataset" : "index",
-        "impute_numeric" : "most_frequent",
-        "model" : "gbr"
-    }  
-    ```
+      ```bash
+        {
+            "type_kaggle_object" : "dataset",
+            "competition_name" : "anmolkumar/house-price-prediction-challenge",
+            "file_download": "train.csv",
+            "features" : [
+                "POSTED_BY", 
+                "UNDER_CONSTRUCTION", 
+                "RERA", 
+                "BHK_NO.", 
+                "BHK_OR_RK",
+                "SQUARE_FT", 
+                "READY_TO_MOVE", 
+                "RESALE", 
+                "ADDRESS", 
+                "LONGITUDE",
+                "LATITUDE"
+            ],
+            "obj_var" : "TARGET(PRICE_IN_LACS)",
+            "id_dataset" : "index",
+            "impute_numeric" : "most_frequent",
+            "model" : "gbr"
+        }  
+      ```
 
 ## Installation
 After cloning this repo, please install requirements.
