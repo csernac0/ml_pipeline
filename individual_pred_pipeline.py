@@ -9,7 +9,10 @@ if __name__ == '__main__':
     #Instanciate PrepareRawData class
     obj_prepare = PrepareRawData()
     #read downloaded raw data
-    obj_prepare.get_raw(file_name = 'train.csv', raw_id = int(sys.argv[1]))
+    obj_prepare.get_raw(
+        file_name = 'train.csv', 
+        raw_id = int(sys.argv[1])
+        )
     #Classify numerical & categorical features  
     obj_prepare.get_numeric_categoric_vars()
     #Processing categorical features  

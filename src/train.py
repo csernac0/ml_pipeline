@@ -10,7 +10,10 @@ class TrainModel(object):
         Training class
         Created on April 21, 2021
     """
-    def __init__(self, file_name: str = 'df_processed_train.csv'):
+    def __init__(
+        self, 
+        file_name: str = 'df_processed_train.csv'
+    ):
         """
         Get the train dataset saved in the previous step
         Parameters
@@ -28,12 +31,12 @@ class TrainModel(object):
         self.obj_var = features_dict['obj_var']
 
         #read dataset to process
-        print('     reading data from','data/'+file_name)
+        print('\treading data from','data/'+file_name)
         self.X_train = pd.read_csv('data/'+file_name)
         #save the objetive var independent
         self.y_train = self.X_train[self.obj_var]
 
-        print('     Training on:', self.X_train.shape)
+        print('\tTraining on:', self.X_train.shape)
 
     def train_gbr(self):
         """
@@ -74,10 +77,12 @@ class TrainModel(object):
         r2 = metrics.r2_score(y_true, y_pred)
 
         #Save in a csv file
-        scores = pd.DataFrame([['mae',mae], 
+        scores = pd.DataFrame(
+            [['mae',mae], 
             ['mse',mse], 
             ['r2',r2]],
-            columns=['metric','value'])
+            columns=['metric','value']
+        )
         scores.to_csv('obj/train_metrics.csv',index=False)
         print('     R2:',r2)
 
@@ -95,9 +100,15 @@ class TrainModel(object):
             self.model = self.train_gbr()
         elif model_type == 'reg':
             self.model = self.train_reg()
+        
         self.y_pred = self.model.predict(self.X_train[self.features])
         self.measure_results(self.y_train, self.y_pred)
-        print('     metric and model saved on obj/model/train_metrics.csv')
+        print('\tmetric saved obj/model/train_metrics.csv')
+        
         with open('obj/model.p', 'wb') as handle:
-            pickle.dump(self.model, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(
+                self.model, 
+                handle, 
+                protocol=pickle.HIGHEST_PROTOCOL
+            )
 

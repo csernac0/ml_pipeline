@@ -5,8 +5,10 @@ from src.eval import EvalModel
 import pickle
 
 
-def select_features(list_features: list = ['MSSubClass'], 
-    obj_var: str = 'SalePrice'):
+def select_features(
+    list_features: list = ['MSSubClass'], 
+    obj_var: str = 'SalePrice'
+):
     """
     Save the selected features on pickle file
     Parameters
@@ -20,7 +22,11 @@ def select_features(list_features: list = ['MSSubClass'],
      }
     #Saving features in a config pickle
     with open('src/features.p', 'wb') as handle:
-        pickle.dump(features_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(
+            features_dict, 
+            handle, 
+            protocol=pickle.HIGHEST_PROTOCOL
+        )
 
 if __name__ == '__main__':
     #download raw data from kaggle competition
@@ -30,15 +36,17 @@ if __name__ == '__main__':
     )
 
     #Select the features
-    select_features([
-        'MSSubClass',
-        'MSZoning',
-        'LotFrontage',
-        'LotArea',
-        'Street',
-        'Alley',],
-        'SalePrice'
-        )
+    select_features(
+        [
+            'MSSubClass',
+            'MSZoning',
+            'LotFrontage',
+            'LotArea',
+            'Street',
+            'Alley'
+        ]
+        ,'SalePrice'
+    )
 
     #PIPELINE STARTS
     #Instanciate PrepareRawData class
@@ -60,7 +68,9 @@ if __name__ == '__main__':
 
     #Train model
         #model_type can be on of the following ['reg', 'gbr']
-    TrainModel(file_name = 'df_processed_train.csv').train_main(model_type = 'gbr')
+    TrainModel(
+        file_name = 'df_processed_train.csv'
+    ).train_main(model_type = 'gbr')
     #Eval model
         #please visit obj/ to see results
     EvalModel(file_name = 'df_processed_test.csv').eval_model()
