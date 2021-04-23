@@ -13,7 +13,7 @@ For default it will run on https://www.kaggle.com/c/house-prices-advanced-regres
         kaggle_username=your_username
         kaggle_key=your_key   
         ```
-4. Accept the competition rules so we can use the API to download files.
+4. Accept the competition rules so we can download files trhouhout Kaggle API.
 
 
 
