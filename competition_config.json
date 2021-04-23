@@ -1,0 +1,35 @@
+{
+    "competition_name" : "house-prices-advanced-regression-techniques",
+    "file_download": "train.csv",
+    "features" : [
+        "MSSubClass",
+        "MSZoning",
+        "LotFrontage",
+        "LotArea",
+        "Street",
+        "Alley",
+        "LotShape",
+        "LandContour",
+        "Utilities",
+        "LotConfig",
+        "LandSlope",
+        "Neighborhood",
+        "Condition1",
+        "Condition2",
+        "BldgType",
+        "HouseStyle",
+        "OverallQual",
+        "OverallCond",
+        "YearBuilt",
+        "YearRemodAdd",
+        "RoofStyle",
+        "RoofMatl",
+        "Exterior1st",
+        "Exterior2nd"
+    ],
+    "obj_var" : "SalePrice",
+    "id_dataset" : "Id",
+    "impute_numeric" : "most_frequent",
+    "model" : "gbr"
+}  
+    

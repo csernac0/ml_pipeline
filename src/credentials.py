@@ -7,22 +7,18 @@ def save_kaggle_config_file():
     """
     Generates a configuration file kaggle.json
     Created on April 21, 2021
-
     Input
     ----------
         file : .env
             kaggle_username=your_user
             kaggle_key=your_key
-
     Output
     ------- 
         file : .json
             Places the file in $HOME/.kaggle/kaggle.json
-
     For further documentation please visit 
         - https://github.com/Kaggle/kaggle-api
         - https://pypi.org/project/python-dotenv/
-
     """
 
     try:

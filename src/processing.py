@@ -10,20 +10,24 @@ class PrepareRawData(object):
         Basic cleaning and processing raw data
         Created on April 21, 2021
     """
-    def __init__(self):
+    def __init__(
+        self, 
+        features: list, 
+        obj_var: str, 
+        id_dataset: str, 
+        impute_numeric: str
+    ):
         """
-        Get features to process from config file
+        Set config vars
         """
-        #read the features from config file
         print('\nInitializing PrepareRawData class...')
-        
-        with open('src/features.p', 'rb') as handle:
-            features_dict = pickle.load(handle)
 
         #get the dictionary in separate vars
-        self.features = features_dict['features']
-        #Objective variable
-        self.obj_var = features_dict['obj_var']
+        self.features = features
+        self.obj_var = obj_var
+        self.id_dataset = id_dataset
+        self.impute_numeric = impute_numeric
+
 
     def get_raw(
         self, 
@@ -52,7 +56,7 @@ class PrepareRawData(object):
                     try:
                         #Nota hay que dejar el id configurable
                         self.df = self.df[
-                            self.df.Id==raw_id
+                            self.df[self.id_dataset] == raw_id
                         ]
                     except:
                         print("\tdoesn't exist id in dataset")
@@ -132,7 +136,6 @@ class PrepareRawData(object):
 
     def impute_numerical(
         self, 
-        impute_strategy: str = 'constant', 
         raw_id: bool = np.nan
     ):
         """
@@ -149,7 +152,7 @@ class PrepareRawData(object):
         if pd.isnull(raw_id):
             imputer = SimpleImputer(
                 missing_values=np.nan, 
-                strategy=impute_strategy
+                strategy=self.impute_numeric
             )
             imputer.fit(self.df[self.numeric_cols])
             #save imputer

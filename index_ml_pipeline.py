@@ -2,75 +2,91 @@ from src.extraction import GetRawData
 from src.processing import PrepareRawData
 from src.train import TrainModel
 from src.eval import EvalModel
-import pickle
+import json
 
+def get_config_vars():
+    """
+    Reads competition_config.json
+    Output
+    ------
+        competition_name: str,
+        file_dowload: str,
+            file to train pipeline
+        imput_numeric: str,
+            how we are going to impute nan numeric features
+        model: str
+            gbr, reg
+    """
+    #Read config file
+    with open('competition_config.json') as json_file:
+        competition_config = json.load(json_file)
 
-def select_features(
-    list_features: list = ['MSSubClass'], 
-    obj_var: str = 'SalePrice'
-):
-    """
-    Save the selected features on pickle file
-    Parameters
-    ----------
-        list_features : list,
-        obj_var : str
-    """
-    features_dict = {
-    'features': list_features,
-     'obj_var': obj_var
-     }
-    #Saving features in a config pickle
-    with open('src/features.p', 'wb') as handle:
-        pickle.dump(
-            features_dict, 
-            handle, 
-            protocol=pickle.HIGHEST_PROTOCOL
-        )
+    competition_name = competition_config['competition_name']
+    file_download = competition_config['file_download']
+    features = competition_config['features']
+    obj_var = competition_config['obj_var']
+    id_dataset = competition_config['id_dataset']
+    impute_numeric = competition_config['impute_numeric']
+    model = competition_config['model']
+
+    return [
+        competition_name, 
+        file_download, 
+        features, 
+        obj_var, 
+        id_dataset, 
+        impute_numeric, 
+        model
+    ]
+
 
 if __name__ == '__main__':
-    #download raw data from kaggle competition
-    GetRawData().get_kaggle_dataset(
-        competition = 'house-prices-advanced-regression-techniques',
-        file_name = 'train.csv'
-    )
-
-    #Select the features
-    select_features(
-        [
-            'MSSubClass',
-            'MSZoning',
-            'LotFrontage',
-            'LotArea',
-            'Street',
-            'Alley'
-        ]
-        ,'SalePrice'
-    )
-
     #PIPELINE STARTS
-    #Instanciate PrepareRawData class
-    obj_prepare = PrepareRawData()
+    
+
+    #1. Get vars from config file
+    (
+        competition_name, 
+        file_download, 
+        features, 
+        obj_var, 
+        id_dataset, 
+        impute_numeric, 
+        model
+    ) = get_config_vars()
+    
+    #2. download raw data from kaggle competition
+    GetRawData().get_kaggle_dataset(
+        competition = competition_name,
+        file_name = file_download
+    )
+    
+    #3. Instanciate PrepareRawData class
+    obj_prepare = PrepareRawData(        
+        features = features, 
+        obj_var = obj_var, 
+        id_dataset = id_dataset, 
+        impute_numeric = impute_numeric
+        )
     #read downloaded raw data
-    obj_prepare.get_raw(file_name = 'train.csv')
+    obj_prepare.get_raw(
+        file_name = file_download
+    )
     #Classify numerical & categorical features  
     obj_prepare.get_numeric_categoric_vars()
     #Processing categorical features  
     obj_prepare.process_categoric()
     #Processing numerical nan imputation
-        #imput strategy can be one of the following
-        #['most_frequent','mean','constant'->0]
-    obj_prepare.impute_numerical(impute_strategy = 'constant')
+    obj_prepare.impute_numerical()
     #Split data into train & test
-        #default split_size = .3
-        #obj_prepare.split_rnd_set()
     obj_prepare.split_rnd_set(split_size = .1)
 
-    #Train model
+    #4. Train model
         #model_type can be on of the following ['reg', 'gbr']
     TrainModel(
-        file_name = 'df_processed_train.csv'
-    ).train_main(model_type = 'gbr')
-    #Eval model
+        model = model
+    ).train_main()
+    #5. Eval model
         #please visit obj/ to see results
-    EvalModel(file_name = 'df_processed_test.csv').eval_model()
+    EvalModel().eval_model()
+

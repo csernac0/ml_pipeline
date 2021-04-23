@@ -12,6 +12,7 @@ class TrainModel(object):
     """
     def __init__(
         self, 
+        model: str = 'gbr',
         file_name: str = 'df_processed_train.csv'
     ):
         """
@@ -29,7 +30,7 @@ class TrainModel(object):
         #get the dict in separate vars
         self.features = features_dict['features']
         self.obj_var = features_dict['obj_var']
-
+        self.model_type = model
         #read dataset to process
         print('\treading data from','data/'+file_name)
         self.X_train = pd.read_csv('data/'+file_name)
@@ -86,19 +87,16 @@ class TrainModel(object):
         scores.to_csv('obj/train_metrics.csv',index=False)
         print('     R2:',r2)
 
-    def train_main(self, model_type: str = 'gbr'):
+    def train_main(self):
         """
         Select a model for training step
-        Parameters
-        ----------
-            model_type: ['reg','gbr']
         Output
         ------
             model: .p
         """
-        if model_type == 'gbr':
+        if self.model_type == 'gbr':
             self.model = self.train_gbr()
-        elif model_type == 'reg':
+        elif self.model_type == 'reg':
             self.model = self.train_reg()
         
         self.y_pred = self.model.predict(self.X_train[self.features])
