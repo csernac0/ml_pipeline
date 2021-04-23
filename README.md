@@ -18,7 +18,7 @@ The pipeline includes:
     kaggle_key=your_key   
     ```
 4. Accept the competition rules so we can download files throughout Kaggle API.
-5. There is a competition_config.json file included, if you want you can change the values for another competition dataset. This is the configuration for https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview 
+5. There is a competition_config.json file included, feel free to change the values for another competition dataset. The current file is configured for https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview 
 
 ```bash
 {
