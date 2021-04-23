@@ -7,24 +7,25 @@ For default it will run on https://www.kaggle.com/c/house-prices-advanced-regres
 ## Prerequisites 
 1. python 3.8
 2. Kaggle **API** credentials: To use the Kaggle API, sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (https://www.kaggle.com/username/account) and select 'Create API Token'. This will trigger the download of kaggle.json, a file containing your API credentials. 
-  For further documentation please visit: **https://github.com/Kaggle/kaggle-api**
-3. Generate a **.env** file with the previous kaggle.json file. This file must be saved at this level.
-        ```bash
-        kaggle_username=your_username
-        kaggle_key=your_key   
-        ```
-4. Accept the competition rules so we can download files trhouhout Kaggle API.
+  For further documentation please visit: https://github.com/Kaggle/kaggle-api
+3. Generate a **.env** file with the generated kaggle.json values. This file must be saved at this level with the following structure.
+    ```bash
+    kaggle_username=your_username
+    kaggle_key=your_key   
+    ```
+4. Accept the competition rules so we can download files throughout Kaggle API.
 
 
 
 ## Instalation
-After clone the repo, please make sure to do the following:
+After cloning this repo, please install requirements.
 ```python
 pip install -r requirements.txt
 ```
 
 
 ## Usage
+To run the entire pipeline (extraction -> data_processing -> model_training -> model eval) please run. 
 ```python
 python index_ml_pipeline.py
 ```
