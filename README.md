@@ -22,6 +22,7 @@ The pipeline includes:
 
     ```bash
     {
+        "type_kaggle_object" : "competition",
         "competition_name" : "house-prices-advanced-regression-techniques",
         "file_download": "train.csv",
         "features" : [
