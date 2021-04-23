@@ -201,7 +201,7 @@ class PrepareRawData(object):
         #getting the new features (after encoding)
         features_dict = {
             'features': df_train.columns,
-             'obj_var': 'SalePrice'
+             'obj_var': self.obj_var
         }
 
         #rsaving files

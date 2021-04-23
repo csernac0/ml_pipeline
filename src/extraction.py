@@ -8,10 +8,11 @@ class GetRawData(object):
     Gets a desired raw dataset    
     Created on April 21, 2021
     """
-    def __init__(self):
+    def __init__(self, type_kaggle_object: str = 'competition'):
         """Check if the credentials are properly configured"""
         print('\nInitializing GetRawData class...')
         str_home = os.environ['HOME']
+        self.type_kaggle_object = type_kaggle_object
         #save the file
         if not path.exists(str_home+'/.kaggle/kaggle.json'):
             save_kaggle_config_file()
@@ -50,10 +51,17 @@ class GetRawData(object):
             #Read credentials
             api.authenticate()
             #download dataset
-            api.competition_download_file(
-                competition, 
-                file_name
-            )
+
+            if self.type_kaggle_object == 'competition':
+                api.competition_download_file(
+                    competition, 
+                    file_name
+                )
+            else:
+                api.dataset_download_files(
+                    competition, 
+                    unzip=True
+                )
             #Save it in data folder
             os.rename(
                 file_name, 

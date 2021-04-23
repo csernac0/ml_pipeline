@@ -21,6 +21,7 @@ def get_config_vars():
     with open('competition_config.json') as json_file:
         competition_config = json.load(json_file)
 
+    type_kaggle_object = competition_config['type_kaggle_object']
     competition_name = competition_config['competition_name']
     file_download = competition_config['file_download']
     features = competition_config['features']
@@ -30,6 +31,7 @@ def get_config_vars():
     model = competition_config['model']
 
     return [
+        type_kaggle_object,
         competition_name, 
         file_download, 
         features, 
@@ -46,6 +48,7 @@ if __name__ == '__main__':
 
     #1. Get vars from config file
     (
+        type_kaggle_object,
         competition_name, 
         file_download, 
         features, 
@@ -56,7 +59,7 @@ if __name__ == '__main__':
     ) = get_config_vars()
     
     #2. download raw data from kaggle competition
-    GetRawData().get_kaggle_dataset(
+    GetRawData(type_kaggle_object).get_kaggle_dataset(
         competition = competition_name,
         file_name = file_download
     )
