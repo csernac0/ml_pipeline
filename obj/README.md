@@ -1,0 +1,1 @@
+Generated objects in the pipeline
