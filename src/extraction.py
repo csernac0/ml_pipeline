@@ -17,7 +17,11 @@ class GetRawData(object):
             save_kaggle_config_file()
             
 
-    def get_kaggle_dataset(self, competition: str, file_name: str):
+    def get_kaggle_dataset(
+        self, 
+        competition: str, 
+        file_name: str
+        ):
         from kaggle.api.kaggle_api_extended import KaggleApi
         """
         Gets a kaggle competition dataset
@@ -46,16 +50,23 @@ class GetRawData(object):
             #Read credentials
             api.authenticate()
             #download dataset
-            api.competition_download_file(competition, 
+            api.competition_download_file(
+                competition, 
                 file_name
                 )
             #Save it in data folder
-            os.rename(file_name, 'data/'+file_name)
+            os.rename(
+                file_name, 
+                'data/'+file_name
+                )
         except:
             print('     please check the required vars')
 
 
-    def get_local_dataset(self, file_name: str):
+    def get_local_dataset(
+        self, 
+        file_name: str
+        ):
         """Function for illustration     purposes"""
         pd.read_csv(file_name)
         #save
