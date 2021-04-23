@@ -25,6 +25,7 @@ pip install -r requirements.txt
 
 
 ## Usage
+To run the entire pipeline (extraction -> data_processing -> model_training -> model eval) please run. 
 ```python
 python index_ml_pipeline.py
 ```
