@@ -64,7 +64,6 @@ class EvalModel(object):
         print('     metrics saved on obj/model/test_metrics.csv')
         scores.to_csv('obj/test_metrics.csv',index=False)
         
-
     def eval_model(self):
         """
         Computes predictions & measure results
