@@ -20,24 +20,24 @@ The pipeline includes:
 4. **It is very important** to accept the competition rules so we can download files throughout Kaggle API.
 5. There is a competition_config.json file included, feel free to change the values for another competition dataset. The current file is configured for https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview 
 
-```bash
-{
-    "competition_name" : "house-prices-advanced-regression-techniques",
-    "file_download": "train.csv",
-    "features" : [
-        "MSSubClass",
-        "MSZoning",
-        "LotFrontage",
-        "LotArea",
-        "Street",
-        "Alley"
-    ],
-    "obj_var" : "SalePrice",
-    "id_dataset" : "Id",
-    "impute_numeric" : "most_frequent", # Can be: most_frequent, mean, constant = 0
-    "model" : "gbr" # Can be gbr= GradientBoostingRegresor, reg= LinearRegression
-}  
-```
+    ```bash
+    {
+        "competition_name" : "house-prices-advanced-regression-techniques",
+        "file_download": "train.csv",
+        "features" : [
+            "MSSubClass",
+            "MSZoning",
+            "LotFrontage",
+            "LotArea",
+            "Street",
+            "Alley"
+        ],
+        "obj_var" : "SalePrice",
+        "id_dataset" : "Id",
+        "impute_numeric" : "most_frequent", # Can be: most_frequent, mean, constant = 0
+        "model" : "gbr" # Can be gbr= GradientBoostingRegresor, reg= LinearRegression
+    }  
+    ```
 
 
 ## Installation
