@@ -64,4 +64,5 @@ python individual_pred_pipeline.py 7
 
 
 ## Knowledge
-It can be found on the [wiki](https://github.com/csernac0/ml_pipeline/wiki) of this project.
+For more information about this project please visit the [wiki](https://github.com/csernac0/ml_pipeline/wiki) of this project.
+It includes a description for each folder and file.
