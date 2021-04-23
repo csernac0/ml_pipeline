@@ -36,21 +36,44 @@ class TrainModel(object):
         print('     Training on:', self.X_train.shape)
 
     def train_gbr(self):
+        """
+        Train a gradientBoostingRegressor
+        Output
+        ------
+            model : GradientBoostingRegressor
+        """
         reg = GradientBoostingRegressor(random_state=0)
         reg.fit(self.X_train[self.features], self.y_train)
         return reg
 
     def train_reg(self):
+        """
+        Train a LinearRegression
+        Output
+        ------
+            model : LinearRegression
+        """
         reg = LinearRegression()
         reg.fit(self.X_train[self.features], self.y_train)
         return reg
 
     def measure_results(self, y_true, y_pred):
+        """
+        Computes mae, r2 & mse
+        Parameters
+        ----------
+            y_true: list of real values,
+            y_pred: list of predictons
+        Output
+        ------
+            scores: .csv
+        """
         # Regression metrics
         mae = metrics.mean_absolute_error(y_true, y_pred) 
         mse = metrics.mean_squared_error(y_true, y_pred) 
         r2 = metrics.r2_score(y_true, y_pred)
 
+        #Save in a csv file
         scores = pd.DataFrame([['mae',mae], 
             ['mse',mse], 
             ['r2',r2]],
@@ -59,6 +82,15 @@ class TrainModel(object):
         print('     R2:',r2)
 
     def train_main(self, model_type: str = 'gbr'):
+        """
+        Select a model for training step
+        Parameters
+        ----------
+            model_type: ['reg','gbr']
+        Output
+        ------
+            model: .p
+        """
         if model_type == 'gbr':
             self.model = self.train_gbr()
         elif model_type == 'reg':
