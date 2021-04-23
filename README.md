@@ -1,8 +1,11 @@
 # 🧑‍🔬 ML Pipeline
 
-ml_pipeline is a tool that allows data scientists to easily run ML pipelines on kaggle competition datasets. 
-For default it will run on https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview competiton.
+ml_pipeline is a tool that allows data scientists to easily run ML pipelines kaggle competition datasets. The pipeline includes: 
 
+* extraction
+* data_processing 
+* model_training 
+* model eval)
 
 ## Prerequisites 
 1. python 3.8
@@ -14,7 +17,26 @@ For default it will run on https://www.kaggle.com/c/house-prices-advanced-regres
     kaggle_key=your_key   
     ```
 4. Accept the competition rules so we can download files throughout Kaggle API.
+5. There is a competition_config.json file included, if you want you can change the values for another competition dataset. This is the configuration for https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview 
 
+```bash
+{
+    "competition_name" : "house-prices-advanced-regression-techniques",
+    "file_download": "train.csv",
+    "features" : [
+        "MSSubClass",
+        "MSZoning",
+        "LotFrontage",
+        "LotArea",
+        "Street",
+        "Alley"
+    ],
+    "obj_var" : "SalePrice",
+    "id_dataset" : "Id",
+    "impute_numeric" : "most_frequent", # Can be: most_frequent, mean, constant = 0
+    "model" : "gbr" # Can be gbr= GradientBoostingRegresor, reg= LinearRegression
+}  
+```
 
 
 ## Installation
@@ -34,7 +56,7 @@ And for a single evaluation (must run first the training pipeline).
 ```python
 python individual_pred_pipeline.py id_to_predict
 ```
-For house id 7
+Example: for row `id = 7`
 ```python
 python individual_pred_pipeline.py 7
 ```
