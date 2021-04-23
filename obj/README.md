@@ -1,4 +1,6 @@
 ## Objects generated during the pipeline will be saved here
 * model.p
-* imputer.p
-* encoder.p
+* iimpute_numerical.p
+* encode_categorical.p
+* test_metrics.csv
+* train_metrics.csv
