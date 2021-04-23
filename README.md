@@ -32,3 +32,7 @@ And for a single evaluation (must run first the training pipeline).
 ```python
 python ml_pipeline.py id_to_predict
 ```
+
+
+## Knowledge
+It can be found on the [wiki](https://github.com/csernac0/ml_pipeline/wiki) of this project.
